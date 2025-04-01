@@ -3,7 +3,7 @@ import java.util.List;
 
 public class Facturador {
 
-    List<Venta> ventas;
+    private List<Venta> ventas;
 
     public Facturador(List<Venta> ventas) {
         this.ventas = ventas;

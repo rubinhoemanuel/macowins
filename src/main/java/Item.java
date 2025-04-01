@@ -1,7 +1,7 @@
 public class Item {
 
-    public Prenda prenda;
-    public int cantidad;
+    private Prenda prenda;
+    private int cantidad;
 
     public Item(Prenda prenda, int cantidad) {
         this.prenda = prenda;
