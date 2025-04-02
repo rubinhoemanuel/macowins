@@ -1,0 +1,75 @@
+@startuml
+
+enum TipoPrenda {
+    SACO,
+    PANTALON,
+    CAMISA
+}
+
+interface EstadoPrenda {
+    +Double calcularPrecio(Double precioPropio)
+}
+
+class Nueva implements EstadoPrenda {
+    +Double calcularPrecio(Double precioPropio)
+}
+
+class Promocion implements EstadoPrenda {
+    -Double valorFijo
+    +Double calcularPrecio(Double precioPropio)
+}
+
+class Liquidacion implements EstadoPrenda {
+    -static final Double PORCENTAJE_LIQUIDACION = 50.0
+    +Double calcularPrecio(Double precioPropio)
+}
+
+class Prenda {
+    -TipoPrenda tipo
+    -EstadoPrenda estado
+    -Double precioPropio
+    +Double getPrecio()
+}
+
+Prenda --> TipoPrenda
+Prenda --> EstadoPrenda
+
+abstract class Venta {
+    -LocalDate fecha
+    -List<Item> items
+    +Double getTotalVenta()
+    +Double getPrecioItems(List<Item> items)
+    +LocalDate getFecha()
+    +abstract Double getRecargo(List<Item> items)
+}
+
+Venta "1" --> "*" Item
+
+class Item {
+    -Prenda prenda
+    -Integer cantidad
+    +Double getPrecio()
+}
+
+Item --> Prenda
+
+class VentaEnEfectivo extends Venta {
+    +Double getRecargo(List<Item> items)
+}
+
+class VentaConTarjeta extends Venta {
+    -Integer cantidadCuotas;
+    -static final Double COEFICIENTE_FIJO = 50.0
+    -static final Double PORCENTAJE_X_PRENDA = 0.01
+    +VentaConTarjeta(LocalDate fecha, List<Item> items, Integer cantidadCuotas)
+    +Double getRecargo(List<Item> items)
+}
+
+class Facturador {
+    -List<Venta> ventas
+    +Double getTotalFacturado(LocalDate fecha)
+}
+
+Facturador "1" --> "*" Venta
+
+@enduml

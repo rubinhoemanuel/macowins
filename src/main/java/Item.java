@@ -1,9 +1,9 @@
 public class Item {
 
     private Prenda prenda;
-    private int cantidad;
+    private Integer cantidad;
 
-    public Item(Prenda prenda, int cantidad) {
+    public Item(Prenda prenda, Integer cantidad) {
         this.prenda = prenda;
         this.cantidad = cantidad;
     }
