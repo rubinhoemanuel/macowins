@@ -61,7 +61,6 @@ class VentaConTarjeta extends Venta {
     -Integer cantidadCuotas;
     -static final Double COEFICIENTE_FIJO = 50.0
     -static final Double PORCENTAJE_X_PRENDA = 0.01
-    +VentaConTarjeta(LocalDate fecha, List<Item> items, Integer cantidadCuotas)
     +Double getRecargo(List<Item> items)
 }
 

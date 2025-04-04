@@ -20,10 +20,6 @@ public class VentaTest {
         assertEquals(720.0, precioTotal);
     }
 
-    public VentaEnEfectivo getVentaEnEfectivo(LocalDate fecha) {
-        return new VentaEnEfectivo(fecha, getItems());
-    }
-
     @Test
     public void precioVentaConTarjeta() {
 
@@ -36,6 +32,10 @@ public class VentaTest {
 
         // Assert
         assertEquals(1027.2, precioTotal);
+    }
+
+    public VentaEnEfectivo getVentaEnEfectivo(LocalDate fecha) {
+        return new VentaEnEfectivo(fecha, getItems());
     }
 
     private VentaConTarjeta getVentaConTarjeta(LocalDate fecha, Integer i) {
